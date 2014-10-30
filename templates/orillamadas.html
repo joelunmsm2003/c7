@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.8.2.js'></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+
+
+<table class="table table-striped">
+ <tr class="warning">
+  <td>id_ori_llamadas</td>
+  <td>age_ip </td>
+  <td>age_codigo</td> 
+  <td>cam_codigo</td>
+  <td>llam_numero</td> 
+  <td>llam_estado</td>
+  <td>llam_flag</td>
+  <td>llam_uniqueid </td>
+  <td>tipo</td>
+  <td>f_origen </td>
+  <td>canal1 </td>
+  <td>canal2</td> 
+  <td>flagfin</td> 
+  <td>v_tring</td>
+  <td>v_retry</td>
+  <td>v_tipbusc</td>
+  <td>duration </td>   
+  <td>gestion_editid1</td> 
+  <td>gestion_editid2</td> 
+  <td>gestion_editid3 </td>
+  <td>f_llam_fin</td> 
+  <td>id_ori_campana</td> 
+  <td>id_cliente</td>  
+  <td>coderr</td> 
+  <td>audio </td>
+  <td>sql </td>
+  <td>gestion_editid4 </td>
+  <td>gestion_editid6</td>  
+  <td>gestion_editid7</td> 
+  <td>gestion_editid8 </td> 
+  <td>gestion_editid9</td>  
+  <td>gestion_editid10</td>  
+  <td>gestion_editid11</td>
+  <td>id_ori_seg_cola</td>
+  <td>age_nombre/td>
+  <td>anexo</td>
+  <td>esp</td>
+  </tr>
+
+
+
+<tr>
+<div id='orillamada'></div>
+</tr>
+
+</table>
+
+
+
+<script type="text/javascript">
+    
+setInterval('moverItem()',2000);
+
+
+function moverItem() {
+ori = $('#count').text()
+
+    
+       $.ajax({
+                        url : "/ori", 
+                        type : "POST", 
+                        dataType:"json",
+                        data : {
+                            nori: ori,
+                            csrfmiddlewaretoken: '{{ csrf_token }}'
+                            },
+                            success : function(json) {
+                                $('#orillamada').append('<tr><td>'+json[0].fields.age_codigo+'</td></tr>')
+                                console.log(json[0].fields.age_codigo)
+                              
+                            },
+                    });
+                    return false;
+}
+
+</script>
+
+
+
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<script type='text/javascript' src='https://code.jquery.com/jquery-1.8.2.js'></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#button").click(function() {
+                    var input_string = $("#forminput").val();
+                    $.ajax({
+                        url : "/post", 
+                        type : "POST", 
+                        dataType:"html",
+                        
+                        data: "&timestamp="+timestamp,
+                            success : function(json) {
+                                $('#result').append( 'Server Response: ' + json);
+                            },
+                    });
+                    return false;
+            });
+        });
+</script>
+<form method="post" name="example form" >
+        {% csrf_token %}
+        <input name="example" id="forminput" type="text">
+        <input id="button" type="button" value="send to server"></input>
+</form>
+<div id="result">
+</div>
+</body>
+</html>
